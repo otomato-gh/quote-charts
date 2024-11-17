@@ -1,0 +1,39 @@
+# Default values for quotegen.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: otomato/quotegen
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.4"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+
+
+service:
+  type: ClusterIP
+  port: 8080
+
+
+
+resources: {}
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+env:
+  - name: DATABASE_URL
+    value: "postgresql://postgres:postgres@postgres-postgresql:5432/dailyquote?sslmode=disable"
+  - name: OLLAMA_URL
+    value: http://ollama.ollama:11434/api/
