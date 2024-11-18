@@ -28,13 +28,7 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-resources: 
-  limits:
-    cpu: 100m
-    memory: 50Mi
-  requests:
-    cpu: 100m
-    memory: 50Mi
+resources: {}
 
 autoscaling:
   enabled: false
@@ -43,12 +37,4 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-env:
-  - name: DATABASE_URL
-    value: "postgresql://postgres:postgres@postgres-postgresql:5432/dailyquote?sslmode=disable"
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+env: {}
