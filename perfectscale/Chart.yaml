@@ -1,0 +1,11 @@
+apiVersion: v2
+appVersion: 1.0.0
+dependencies:
+- condition: settings.deployKubeStateMetrics
+  name: kube-state-metrics
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 5.13.0
+description: PerfectScale data exporter
+name: exporter
+type: application
+version: v1.0.43
