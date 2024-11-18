@@ -33,7 +33,7 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 env:
-  - name: DATABASE_URL
-    value: "postgresql://postgres:postgres@postgres-postgresql:5432/dailyquote?sslmode=disable"
-  - name: OLLAMA_URL
-    value: http://ollama.ollama:11434/api/
+- name: DATABASE_URL
+  value: 'postgresql://postgres:postgres@postgres-postgresql:5432/dailyquote?sslmode=disable'
+- name: OLLAMA_URL
+  value: 'http://ollama.ollama:11434/api/'
