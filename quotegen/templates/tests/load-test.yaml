@@ -1,0 +1,15 @@
+apiVersion: k6.io/v1alpha1
+kind: TestRun
+metadata:
+  name: "{{ include "quotegen.fullname" . }}-load-test"
+  labels:
+    {{- include "quotegen.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  parallelism: 4
+  script:
+    configMap:
+      name: "{{ include "quotegen.fullname" . }}-load-test"
+      file: loadtest.js
+
