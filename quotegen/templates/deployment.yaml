@@ -29,10 +29,9 @@ spec:
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
+          {{- with .Values.env }}
           env:
-            - name: DATABASE_URL
-              value: "{{ .Values.env.DATABASE_URL }}"
-            - name: OLLAMA_URL
-              value: "{{ .Values.env.OLLAMA_URL }}"
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
