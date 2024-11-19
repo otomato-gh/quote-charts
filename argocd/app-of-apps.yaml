@@ -11,8 +11,6 @@ spec:
     repoURL: https://github.com/otomato-gh/quote-charts.git
     targetRevision: HEAD
     path: argocd
-    helm:
-      releaseName: quotes
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
