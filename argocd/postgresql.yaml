@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/otomato-gh/quote-charts.git
+    targetRevision: HEAD
+    path: postgresql
+    helm:
+      parameters:
+      - name: "auth.postgresPassword"
+        value: postgres
+      - name: "auth.database"
+        value: "dailyquote"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

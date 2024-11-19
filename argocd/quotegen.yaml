@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quotegen
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/otomato-gh/quote-charts.git
+    targetRevision: HEAD
+    path: quotegen
+    helm:
+      valuesObject:
+        env:
+        - name: "DATABASE_URL"
+          value: "postgresql://postgres:postgres@postgresql:5432/dailyquote?sslmode=disable"
+        - name: "OLLAMA_URL"
+          value: "http://ollama.ollama:11434/api/"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

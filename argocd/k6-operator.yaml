@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k6-operator
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/otomato-gh/quote-charts.git
+    targetRevision: HEAD
+    path: k6-operator
+    helm:
+      releaseName: k6-operator
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: k6-operator

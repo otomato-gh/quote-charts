@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: perfectscale
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/otomato-gh/quote-charts.git
+    targetRevision: HEAD
+    path: perfectscale
+    helm:
+      parameters:
+      - name: "secret.create"
+        value: "true"
+      - name: "secret.clientId"
+        value: insert-you-client-id-here
+      - name: "secret.clientSecret"
+        value: insert-your-client-secret-here
+      - name: "settings.clusterName"
+        value: workshop
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: perfectscale
