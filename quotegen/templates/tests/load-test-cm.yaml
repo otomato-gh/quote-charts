@@ -6,6 +6,7 @@ metadata:
     {{- include "quotegen.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
+    argocd.argoproj.io/hook: PostSync
 data:
   loadtest.js: |
     import http from 'k6/http';
