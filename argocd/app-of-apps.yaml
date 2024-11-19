@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: quotes
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/otomato-gh/quote-charts.git
+    targetRevision: HEAD
+    path: argocd
+    helm:
+      releaseName: quotes
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
